@@ -19,7 +19,8 @@ public class DBUtils {
 
 	private final String DB_PASS;
 
-	private final String DB_URL = "jdbc:mysql://localhost:3306/ims";
+	private final String DB_URL = "jdbc:mysql://localhost:3306/ims?db_name&serverTimezone=UTC";
+	//private final String DB_URL2 = "jdbc:mysql://35.197.249.67/ims";
 
 	private DBUtils(String username, String password) {
 		this.DB_USER = username;
