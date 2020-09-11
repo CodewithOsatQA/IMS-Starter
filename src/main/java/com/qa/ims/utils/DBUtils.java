@@ -1,11 +1,14 @@
 package com.qa.ims.utils;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileReader;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 import java.util.stream.Stream;
 
 import org.apache.logging.log4j.LogManager;
@@ -15,22 +18,28 @@ public class DBUtils {
 
 	private static final Logger LOGGER = LogManager.getLogger();
 
+	private final String DB_URL;
+
 	private final String DB_USER;
 
 	private final String DB_PASS;
 
-	private final String DB_URL = "jdbc:mysql://localhost:3306/ims?db_name&serverTimezone=UTC";
-	//private final String DB_URL2 = "jdbc:mysql://35.197.249.67/ims";
 
-	private DBUtils(String username, String password) {
-		this.DB_USER = username;
-		this.DB_PASS = password;
+	private DBUtils(String properties) {
+		Properties dbProps = new Properties();
+		try (InputStream fis = new FileInputStream(properties)) {
+			dbProps.load(fis);
+		} catch (Exception e) {
+			LOGGER.error(e);
+		}
+		this.DB_URL = dbProps.getProperty("db.url", "");
+		this.DB_USER = dbProps.getProperty("db.user", "");
+		this.DB_PASS = dbProps.getProperty("db.password", "");
 
-		init();
 	}
 
-	public int init() {
-		return this.init("src/main/resources/sql-schema.sql", "src/main/resources/sql-data.sql");
+	public DBUtils() {
+		this("src/main/resources/db.properties");
 	}
 
 	public int init(String... paths) {
@@ -69,14 +78,19 @@ public class DBUtils {
 
 	public static DBUtils instance;
 
-	public static DBUtils connect(String username, String password) {
-		instance = new DBUtils(username, password);
+	public static DBUtils connect() {
+		instance = new DBUtils();
+		return instance;
+	}
+
+	public static DBUtils connect(String properties) {
+		instance = new DBUtils(properties);
 		return instance;
 	}
 
 	public static DBUtils getInstance() {
 		if (instance == null) {
-			instance = new DBUtils("", "");
+			instance = new DBUtils();
 		}
 		return instance;
 	}
