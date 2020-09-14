@@ -2,7 +2,7 @@ package com.qa.ims;
 
 import com.qa.ims.utils.DBUtils;
 
-public class ResetTest {
+public class Reset {
 	
 	static DBUtils test = new DBUtils();
 	

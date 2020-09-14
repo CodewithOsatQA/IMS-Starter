@@ -11,8 +11,10 @@ CREATE TABLE IF NOT EXISTS `ims`.`customers` (
 CREATE TABLE IF NOT EXISTS `ims`.`products`(
 	`id` INT(10)  NOT NULL AUTO_INCREMENT,
 	`ITEM_NAME` VARCHAR(40),
+	`Quantity` INT(10) DEFAULT 100,
 	PRIMARY KEY (`id`) 
 );
+
 
 CREATE TABLE IF NOT EXISTS `ims`.`productss`(
 	`id` INT(10)  NOT NULL AUTO_INCREMENT,

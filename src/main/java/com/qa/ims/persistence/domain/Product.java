@@ -4,15 +4,34 @@ public class Product {
 
 	private Long productId;
 	private String productName;
+	private Long quantity;
 
 	public Product(String productName) {
 		this.setProductName(productName);
 		
 	}
-
 	public Product(Long id, String productName) {
 		this.setId(id);
 		this.setProductName(productName);
+		
+	}
+	public Product (Long id, Long Quantity) {
+		this.setId(id);
+		this.setQuantity(Quantity);
+	}
+
+	public Product(Long id, String productName, Long Quantity) {
+		this.setId(id);
+		this.setProductName(productName);
+		this.setQuantity(Quantity);
+	}
+
+	public Long getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Long quantity) {
+		this.quantity = quantity;
 	}
 
 	public Long getId() {
@@ -39,7 +58,7 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "id:" + productId + " Item:" + productName;
+		return "id: " + productId + " Item: " + productName + " Quantity: " + quantity;
 	}
 
 	@Override
