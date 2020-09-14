@@ -16,8 +16,11 @@ CREATE TABLE IF NOT EXISTS `ims`.`products`(
 );
 
 
-CREATE TABLE IF NOT EXISTS `ims`.`productss`(
-	`id` INT(10)  NOT NULL AUTO_INCREMENT,
-	`ITEM_NAME` VARCHAR(40),
-	PRIMARY KEY (`id`) 
+CREATE TABLE IF NOT EXISTS `ims`.`orders`(
+	`CustomerID` INT,
+	`orderID` INT(10)  NOT NULL AUTO_INCREMENT,
+	`item_id` INT(10),
+	FOREIGN KEY (`CustomerID`) REFERENCES customers(`id`)
+	FOREIGN KEY (`item_id`) REFERENCES products(`id`)
+	
 );
