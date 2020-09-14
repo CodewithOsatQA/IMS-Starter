@@ -22,8 +22,9 @@ public class ProductDAO implements Dao<Product> {
 	public Product modelFromResultSet(ResultSet resultSet) throws SQLException {
 		Long id = resultSet.getLong("id");
 		String productName = resultSet.getString("item_name");
+		Long Quantity = resultSet.getLong("Quantity");
 		
-		return new Product(id, productName);
+		return new Product(id, productName, Quantity);
 	}
 
 	/**
@@ -104,8 +105,8 @@ public class ProductDAO implements Dao<Product> {
 	@Override
 	public Product update(Product product) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
-				Statement statement = connection.createStatement();) {
-			statement.executeUpdate("update products set item_name ='" + product.getProductName() +  "' where id =" + product.getId());
+				Statement statement = connection.createStatement();) {			
+			statement.executeUpdate("update products set quantity = quantity +" + product.getQuantity() +  " where id =" + product.getId());
 			return readProduct(product.getId());
 		} catch (Exception e) {
 			LOGGER.debug(e);

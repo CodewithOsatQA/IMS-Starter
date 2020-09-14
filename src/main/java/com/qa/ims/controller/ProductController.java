@@ -61,10 +61,10 @@ public class ProductController implements CrudController<Product> {
 	public Product update() {
 		LOGGER.info("Please enter the id of the product you would like to update");
 		Long id = utils.getLong();
-		LOGGER.info("Please enter a product name");
-		String productName = utils.getString();
+		LOGGER.info("Please enter quantity in new shipment");
+		Long newQuantity = utils.getLong();
 		
-		Product product = productDAO.update(new Product(id, productName));
+		Product product = productDAO.update(new Product(id, newQuantity));
 		LOGGER.info("Product Updated");
 		return product;
 	}
