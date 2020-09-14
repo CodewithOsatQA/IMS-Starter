@@ -36,11 +36,11 @@ public class ProductDAO implements Dao<Product> {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
 				ResultSet resultSet = statement.executeQuery("select * from products");) {
-			List<Product> customers = new ArrayList<>();
+			List<Product> products = new ArrayList<>();
 			while (resultSet.next()) {
-				customers.add(modelFromResultSet(resultSet));
+				products.add(modelFromResultSet(resultSet));
 			}
-			return customers;
+			return products;
 		} catch (SQLException e) {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
