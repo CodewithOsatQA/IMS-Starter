@@ -22,9 +22,9 @@ public class ProductDAO implements Dao<Product> {
 	public Product modelFromResultSet(ResultSet resultSet) throws SQLException {
 		Long id = resultSet.getLong("id");
 		String productName = resultSet.getString("item_name");
-		Long Quantity = resultSet.getLong("Quantity");
+		Long price = resultSet.getLong("Price");
 		
-		return new Product(id, productName, Quantity);
+		return new Product(id, productName, price);
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class ProductDAO implements Dao<Product> {
 	public Product create(Product product) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();) {
-			statement.executeUpdate("INSERT INTO products(item_name) values('" + product.getProductName()
+			statement.executeUpdate("INSERT INTO products(item_name, price) values('" + product.getProductName() +"','" + product.getPrice() 
 					 + "')");
 			
 			return readLatest();
@@ -106,7 +106,7 @@ public class ProductDAO implements Dao<Product> {
 	public Product update(Product product) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();) {			
-			statement.executeUpdate("update products set quantity = quantity +" + product.getQuantity() +  " where id =" + product.getId());
+			statement.executeUpdate("update products set Price =" + product.getPrice() +  " where id =" + product.getId());
 			return readProduct(product.getId());
 		} catch (Exception e) {
 			LOGGER.debug(e);
