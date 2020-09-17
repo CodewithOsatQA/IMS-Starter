@@ -22,7 +22,7 @@ public class ProductDAO implements Dao<Product> {
 	public Product modelFromResultSet(ResultSet resultSet) throws SQLException {
 		Long id = resultSet.getLong("id");
 		String productName = resultSet.getString("item_name");
-		Long price = resultSet.getLong("Price");
+		Long price = resultSet.getLong("price");
 		
 		return new Product(id, productName, price);
 	}
