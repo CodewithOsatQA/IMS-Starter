@@ -4,34 +4,33 @@ public class Product {
 
 	private Long productId;
 	private String productName;
-	private Long quantity;
+	private Long price;
 
 	public Product(String productName) {
 		this.setProductName(productName);
 		
 	}
-	public Product(Long id, String productName) {
-		this.setId(id);
+	public Product(String productName, Long price) {
+		this.setPrice(price);
 		this.setProductName(productName);
 		
 	}
-	public Product (Long id, Long Quantity) {
+	public Product (Long id, Long price) {
 		this.setId(id);
-		this.setQuantity(Quantity);
+		this.setPrice(price);
 	}
 
-	public Product(Long id, String productName, Long Quantity) {
+	public void setPrice(Long price) {
+		this.price = price;
+	}
+	public Product(Long id, String productName, Long price) {
 		this.setId(id);
 		this.setProductName(productName);
-		this.setQuantity(Quantity);
+		this.setPrice(price);
 	}
 
-	public Long getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(Long quantity) {
-		this.quantity = quantity;
+	public Long getPrice() {
+		return price;
 	}
 
 	public Long getId() {
@@ -49,6 +48,7 @@ public class Product {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
+	
 
 	/*
 	 * public String getSurname() { return surname; }
@@ -58,7 +58,7 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "id: " + productId + " Item: " + productName + " Quantity: " + quantity;
+		return "id: " + productId + " Item: " + productName + " Price: " + price;
 	}
 
 	@Override

@@ -49,7 +49,9 @@ public class ProductController implements CrudController<Product> {
 		/*
 		 * LOGGER.info("Please enter a surname"); String surname = utils.getString();
 		 */
-		Product product = productDAO.create(new Product(productName));
+		LOGGER.info("Please enter a product price");
+		Long productPrice = utils.getLong();
+		Product product = productDAO.create(new Product(productName,productPrice));
 		LOGGER.info("Product created");
 		return product;
 	}
@@ -61,10 +63,10 @@ public class ProductController implements CrudController<Product> {
 	public Product update() {
 		LOGGER.info("Please enter the id of the product you would like to update");
 		Long id = utils.getLong();
-		LOGGER.info("Please enter quantity in new shipment");
-		Long newQuantity = utils.getLong();
+		LOGGER.info("Please enter new price for the product");
+		Long price = utils.getLong();
 		
-		Product product = productDAO.update(new Product(id, newQuantity));
+		Product product = productDAO.update(new Product(id, price));
 		LOGGER.info("Product Updated");
 		return product;
 	}
