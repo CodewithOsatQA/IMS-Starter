@@ -36,7 +36,12 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## Running the tests
 
-Explain how to run the automated tests for this system. Break down into which tests and what they do
+**Tests for Persistance**
+These tests ensure the methods that are available inside Customer Product and Order objects work the way they are supposed to and return the correct value.
+
+**Tests for Controllers**
+
+Tests for DAO
 
 ### Unit Tests 
 
