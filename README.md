@@ -1,16 +1,17 @@
 Coverage: 34%
 # Project Title
 
-One Paragraph of project description goes here
-
+The IMS is an inventory management system that allows the user to CREATE READ UPDATE and DELETE Customer, Order and Product entitites from a MySQL database using a Java program.
+The program should be able to run from the commandline when compiled into a .jar file or it can be run from the IDE of your choice.
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+To get a working copy of the most recent IMS you can fork from the master branch, or you can download a copy of the master as a .zip file
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
+If you don't have an IDE you can download one some to choose from are  Eclipse and Intellij.
+if you would rather not use an IDE you can download the JDK and JRE from Oracle and run your .jar from the CMD
 ```
 Give examples
 ```
@@ -35,7 +36,12 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## Running the tests
 
-Explain how to run the automated tests for this system. Break down into which tests and what they do
+**Tests for Persistance**
+These tests ensure the methods that are available inside Customer Product and Order objects work the way they are supposed to and return the correct value.
+
+**Tests for Controllers**
+
+Tests for DAO
 
 ### Unit Tests 
 
@@ -75,6 +81,7 @@ We use [SemVer](http://semver.org/) for versioning.
 ## Authors
 
 * **Chris Perrins** - *Initial work* - [christophperrins](https://github.com/christophperrins)
+* **Oforitsesan Towesho**
 
 ## License
 
