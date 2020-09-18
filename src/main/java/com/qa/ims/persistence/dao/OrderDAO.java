@@ -36,6 +36,7 @@ public class OrderDAO implements Dao<Orders> {
 		 * resultSet.getLong("orderlineID");
 		 */
 		Orders newOrder = new Orders(customerId);
+		
 		newOrder.setOrderId(orderId);
 		return newOrder;
 	}
@@ -46,20 +47,7 @@ public class OrderDAO implements Dao<Orders> {
 	 * @return A list of customers
 	 */
 	@Override
-	public List<Orders> readAll() {
-		
-		
-		
-		
-		
-		
-		 
-		
-		
-		
-		
-		
-		
+	public List<Orders> readAll() {	
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
 				

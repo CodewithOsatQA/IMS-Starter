@@ -26,6 +26,9 @@ public class Orders {
 	}
 	
 
+	public String getName() {
+		return name;
+	}
 	public Orders(Long customerId, Long itemId, Long orderID) {
 		this.setCustomerId(customerId);
 		this.setItemId(itemId);
