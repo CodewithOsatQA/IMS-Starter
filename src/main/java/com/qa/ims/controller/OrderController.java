@@ -100,7 +100,7 @@ public class OrderController implements CrudController<Orders> {
 	 */
 	@Override
 	public int delete() {
-		LOGGER.info("Please enter the id of the product you would like to delete from the order");
+		LOGGER.info("Please enter the id of the customers orders you would like to delete");
 		Long id = utils.getLong();
 		return orderDAO.delete(id);
 	}

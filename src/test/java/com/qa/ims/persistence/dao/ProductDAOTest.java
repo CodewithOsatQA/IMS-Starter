@@ -38,6 +38,7 @@ public class ProductDAOTest {
 	  
 	
 	@Test public void testReadLatest() { 
+		
 		assertEquals(new Product(1L, "COKE",
 	 0L), DAO.readLatest()); }
 	 
