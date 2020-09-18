@@ -5,7 +5,8 @@ public class Orders {
 	private Long customerId;
 	private Long orderId;
 	private Long itemId;
-	private Long quantity;
+	private Long cost;
+	private String name;
 	
 	/*
 	 * public Orders(Long customerId, Long itemId, Long quantity) {
@@ -25,20 +26,35 @@ public class Orders {
 	}
 	
 
+	public String getName() {
+		return name;
+	}
 	public Orders(Long customerId, Long itemId, Long orderID) {
 		this.setCustomerId(customerId);
 		this.setItemId(itemId);
 		this.setOrderId(orderID);
 	}
 	
-	public Orders(Long customerId, Long itemId, Long orderId, Long quantity) {
+	public Orders(Long customerId, Long itemId, Long orderId, Long cost) {
 		this.setCustomerId(customerId);
 		this.setItemId(itemId);
-		this.setQuantity(quantity);
+		this.setCost(cost);
 		this.setOrderId(orderId);
 		
 	}
+	
+	public Orders(String name, Long item_id, Long cost) {
+		this.setName(name);
+		this.setCost(cost);
+		this.setItemId(item_id);
+	}
+	
 
+	public void setName(String name) {
+
+		this.name = name;
+		
+	}
 	public Long getCustomerId() {
 		return customerId;
 	}
@@ -63,30 +79,29 @@ public class Orders {
 		this.itemId = itemId;
 	}
 
-	public Long getQuantity() {
-		return quantity;
+	public Long getCost() {
+		return cost;
 	}
 
-	public void setQuantity(Long quantity) {
-		this.quantity = quantity;
+	public void setCost(Long cost) {
+		this.cost= cost;
 	}
 
 	@Override
 	public String toString() {
-		return "Orders [CustomerId=" + customerId + ", OrderId=" + orderId + ", ItemId=" + itemId  + "]";
+		//return "Order: "+ orderId + " CustomerId: " + customerId + " ItemId: " + itemId  + " cost = "+ cost;
+		return "Customer Name: "+ name + " ItemId: "+ itemId + " Order total: " + cost;
 	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((cost == null) ? 0 : cost.hashCode());
 		result = prime * result + ((customerId == null) ? 0 : customerId.hashCode());
 		result = prime * result + ((itemId == null) ? 0 : itemId.hashCode());
 		result = prime * result + ((orderId == null) ? 0 : orderId.hashCode());
-		result = prime * result + ((quantity == null) ? 0 : quantity.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -96,6 +111,11 @@ public class Orders {
 		if (getClass() != obj.getClass())
 			return false;
 		Orders other = (Orders) obj;
+		if (cost == null) {
+			if (other.cost != null)
+				return false;
+		} else if (!cost.equals(other.cost))
+			return false;
 		if (customerId == null) {
 			if (other.customerId != null)
 				return false;
@@ -111,12 +131,11 @@ public class Orders {
 				return false;
 		} else if (!orderId.equals(other.orderId))
 			return false;
-		if (quantity == null) {
-			if (other.quantity != null)
-				return false;
-		} else if (!quantity.equals(other.quantity))
-			return false;
 		return true;
 	}
+
+
+
+
 
 }

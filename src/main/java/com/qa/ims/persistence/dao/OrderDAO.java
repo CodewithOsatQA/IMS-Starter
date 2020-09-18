@@ -21,11 +21,11 @@ public class OrderDAO implements Dao<Orders> {
 
 	@Override
 	public Orders modelFromResultSet(ResultSet resultSet) throws SQLException {
-		Long customerId = resultSet.getLong("order_id");
+		String customerName = resultSet.getString("customer");
 		Long item_id = resultSet.getLong("item_id");
-		Long orderline_id = resultSet.getLong("orderlineID");
+		Long total = resultSet.getLong("total");
 		
-		return new Orders(customerId, item_id, orderline_id);
+		return new Orders(customerName,item_id, total);
 	}
 	
 	public Orders modelFromResultSetOrders(ResultSet resultSet) throws SQLException {
@@ -36,6 +36,7 @@ public class OrderDAO implements Dao<Orders> {
 		 * resultSet.getLong("orderlineID");
 		 */
 		Orders newOrder = new Orders(customerId);
+		
 		newOrder.setOrderId(orderId);
 		return newOrder;
 	}
@@ -46,29 +47,22 @@ public class OrderDAO implements Dao<Orders> {
 	 * @return A list of customers
 	 */
 	@Override
-	public List<Orders> readAll() {
-		
-		
-		
-		
-		/*
-		 * ResultSet resultSet = statement.
-		 * executeQuery("select orders.orderId, orderItems.pId, concat(customers.first_name,\" \", "
-		 * + "customers.surname) as customer, products.product_name, products.price, " +
-		 * "quantity,quantity*price as total from orders, orderItems, products, customers where orders.orderId = "
-		 * +
-		 * "orderItems.orderId and products.pId = orderItems.pId and orders.customerId= customers.id order by orders.orderId, orderItems.pId;"
-		 * );
-		 */
-		
-		
-		
-		
-		
-		
+	public List<Orders> readAll() {	
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("select * from orderline");) {
+				
+				//resultSet = statement.executeQuery("select * from orderline");
+				
+				ResultSet resultSet = statement.executeQuery(
+						"select orders.CustomerID, orderline.item_id, concat(customers.first_name,\" \", "
+						 + "customers.surname) as customer, products.ITEM_NAME, products.Price, " +
+						 "price as total from orders, orderline, products, customers where orders.CustomerID = "
+						 +
+						 "orderline.order_id and products.id = orderline.item_id and orders.customerId= customers.id order by orders.orderID, orderline.item_id;"
+						 );
+				
+				
+				) {
 				
 			List<Orders> orders = new ArrayList<>();
 			while (resultSet.next()) {
